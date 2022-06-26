@@ -1,8 +1,14 @@
 import React from 'react'
+import { Addnote } from './Addnote'
+import Notes from './Notes'
 
 function Home() {
+
     return (
-        <div>Home</div>
+        <div>
+            <Addnote />
+            <Notes />
+        </div>
     )
 }
 
