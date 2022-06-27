@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/cloudbook/static/css/main.11f1e88b.css",
-    "main.js": "/cloudbook/static/js/main.0bb9d867.js",
+    "main.js": "/cloudbook/static/js/main.43c9040a.js",
     "index.html": "/cloudbook/index.html",
     "main.11f1e88b.css.map": "/cloudbook/static/css/main.11f1e88b.css.map",
-    "main.0bb9d867.js.map": "/cloudbook/static/js/main.0bb9d867.js.map"
+    "main.43c9040a.js.map": "/cloudbook/static/js/main.43c9040a.js.map"
   },
   "entrypoints": [
     "static/css/main.11f1e88b.css",
-    "static/js/main.0bb9d867.js"
+    "static/js/main.43c9040a.js"
   ]
 }
