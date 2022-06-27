@@ -87,7 +87,6 @@ router.delete('/deletenote/:id', fetchuser, async (req, res) => {
         if (!note) { return res.status(404).send("Not Found") }
 
         // checking whether the note which the user want to delete belongs to the same user or not
-        console.log(note);
         if (note.user.toString() !== req.user.id) {
             return res.status(401).send("Not allowed")
         }

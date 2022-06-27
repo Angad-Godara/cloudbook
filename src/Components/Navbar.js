@@ -10,7 +10,6 @@ function Navbar() {
 
     const handleLogout = () => {
         localStorage.removeItem('token');
-        console.log(localStorage.getItem('token'))
         showAlert("Logged out succesfully", "success")
     }
 

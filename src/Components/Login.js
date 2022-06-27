@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react'
 import noteContext from '../Context/Notes/noteContext';
 import { useNavigate } from "react-router-dom";
 import alertContext from '../Context/Alert/alertContext';
+import { Link } from 'react-router-dom'
+
 function Login() {
 
     const context = useContext(noteContext)
@@ -42,25 +44,34 @@ function Login() {
     }
 
     return (
-        <div className='container my-3'>
-            <h2>Login to Cloudbook</h2>
-            <form className='my-3' onSubmit={handleClick}>
-                <div className="mb-3">
-                    <label htmlFor="email" className="form-label">Email address</label>
-                    <input type="email" className="form-control" id="email" name='email' aria-describedby="emailHelp" onChange={handlechange} />
-                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+        <>
+            {localStorage.getItem('token') ?
+                <div style={{ height: "70vh" }} className='conatainer d-flex flex-column justify-content-center align-items-center'>
+                    <h2>You are already logged in!</h2>
+                    <h4>Want to <Link onClick={() => localStorage.removeItem('token')} to='/signup'>register</Link> as a new user ?</h4>
+                    <button type="button" className="btn btn-light mt-3" onClick={() => { history("/") }}>Go Back</button>
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="password" name='password' onChange={handlechange} />
-                </div>
-                <div className="mb-3 form-check">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                    <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" className="btn btn-primary">Login</button>
-            </form>
-        </div>
+                :
+                <div className='container my-3'>
+                    <h2>Login to Cloudbook</h2>
+                    <form className='my-3' onSubmit={handleClick}>
+                        <div className="mb-3">
+                            <label htmlFor="email" className="form-label">Email address</label>
+                            <input type="email" className="form-control" id="email" name='email' aria-describedby="emailHelp" onChange={handlechange} />
+                            <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="password" className="form-label">Password</label>
+                            <input type="password" className="form-control" id="password" name='password' onChange={handlechange} />
+                        </div>
+                        {/* <div className="mb-3 form-check">
+                            <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                            <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
+                        </div> */}
+                        <button type="submit" className="btn btn-primary">Login</button>
+                    </form>
+                </div>}
+        </>
     )
 }
 
