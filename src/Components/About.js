@@ -4,7 +4,7 @@ function About() {
 
     return (
         <div>
-            About
+            <h1>This page is under development</h1>
         </div>
     )
 }
