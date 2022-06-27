@@ -5,7 +5,7 @@ const mongoURI = `mongodb+srv://lostinpresent:${passcode}@cluster0.a5ibf.mongodb
 
 const connectToMongo = () => {
     mongoose.connect(mongoURI, () => {
-        console.log("Connection sucessfull");
+        console.log("Connection successfull");
     }) /// THIS IS ASYNC THAT'S WHY IT TAKES SOME EXTRA TIME TO GET CONNECTED
 }
 
