@@ -4,7 +4,6 @@ const user = require('../models/User')
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs')
 var jwt = require('jsonwebtoken');
-const User = require('../models/User');
 const fetchuser = require('../middleware/fetchuser')
 
 const JWT_SECRET = "thisisa$secret"
@@ -28,7 +27,7 @@ router.post('/createuser', [
     try {
 
         // checking if their exists a user with the same email
-        let User = await user.findOne({ success, email: req.body.email })
+        let User = await user.findOne({ email: req.body.email })
 
         if (User) {
             return res.status(400).json({ success, error: "Sorry for inconvenience but the email already exists" })
@@ -59,7 +58,7 @@ router.post('/createuser', [
     }
 })
 
-// Route 2: login in a user using: POST "/api/auth/createuser"
+// Route 2: login in a user using: POST "/api/auth/login"
 router.post('/login', [
 
     body('email', 'Please enter valid credentials').isEmail(),
