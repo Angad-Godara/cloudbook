@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Link, useLocation } from "react-router-dom";
 import alertContext from '../Context/Alert/alertContext';
+import loadingContext from '../Context/LoadingBar/loaderContext';
 
 function Navbar() {
     let location = useLocation();
@@ -8,9 +9,15 @@ function Navbar() {
     const alertcontext = useContext(alertContext)
     const { showAlert } = alertcontext
 
+    const loadingcontext = useContext(loadingContext);
+    const { setProgress } = loadingcontext
+
     const handleLogout = () => {
+        setProgress(20)
         localStorage.removeItem('token');
+        setProgress(60)
         showAlert("Logged out succesfully", "success")
+        setProgress(100)
     }
 
     return (

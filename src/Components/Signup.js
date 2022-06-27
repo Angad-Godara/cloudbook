@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import noteContext from '../Context/Notes/noteContext';
 import { Link, useNavigate } from "react-router-dom";
 import alertContext from '../Context/Alert/alertContext';
+import loadingContext from '../Context/LoadingBar/loaderContext';
 
 function Signup() {
 
@@ -10,6 +11,9 @@ function Signup() {
 
     const { host } = context;
     const { showAlert } = alertcontext;
+
+    const loadingcontext = useContext(loadingContext);
+    const { setProgress } = loadingcontext
 
     let history = useNavigate()
 
@@ -20,6 +24,7 @@ function Signup() {
     }
 
     const handleClick = async (e) => {
+        setProgress(20)
         e.preventDefault();
         const response = await fetch(`${host}/auth/createuser`, {
             method: 'POST',
@@ -28,6 +33,7 @@ function Signup() {
             },
             body: JSON.stringify({ name: user.name, email: user.email, password: user.password })
         });
+        setProgress(60)
         const json = await response.json();
         if (json.success === true) {
             localStorage.setItem('token', json.authtoken)
@@ -41,14 +47,15 @@ function Signup() {
                 showAlert("Please enter valid credentials", "danger")
             }
         }
+        setProgress(100)
     }
 
     return (
         <>{(localStorage.getItem('token') ?
             <div style={{ height: "70vh" }} className='conatainer d-flex flex-column justify-content-center align-items-center'>
                 <h2>You are already logged in!</h2>
-                <h4>Want to <Link onClick={() => localStorage.removeItem('token')} to='/signup'>register</Link> as a new user ?</h4>
-                <button type="button" className="btn btn-light mt-3" onClick={() => { history("/") }}>Go Back</button>
+                <h4>Want to <Link onClick={() => { setProgress(20); localStorage.removeItem('token'); setProgress(100) }} to='/signup'>register</Link> as a new user ?</h4>
+                <button type="button" className="btn btn-light mt-3" onClick={() => { setProgress(20); history("/"); setProgress(100) }}>Go Back</button>
             </div>
             :
             <div className='container'>

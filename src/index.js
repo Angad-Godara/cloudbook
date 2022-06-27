@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import AlertState from './Context/Alert/alertState';
+import LoaderState from './Context/LoadingBar/loaderState';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AlertState>
-      <App />
+      <LoaderState>
+        <App />
+      </LoaderState>
     </AlertState>
   </React.StrictMode>
 );

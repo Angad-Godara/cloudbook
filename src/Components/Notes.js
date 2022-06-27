@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import alertContext from '../Context/Alert/alertContext';
 import noteContext from '../Context/Notes/noteContext'
 import NoteItem from './NoteItem';
+import loadingContext from '../Context/LoadingBar/loaderContext';
 
 function Notes() {
 
@@ -10,6 +11,10 @@ function Notes() {
     const alertcontext = useContext(alertContext);
     const { showAlert } = alertcontext;
     const { notes, getnotes, editnote } = context
+
+
+    const loadingcontext = useContext(loadingContext);
+    const { setProgress } = loadingcontext
 
     const navigate = useNavigate();
 
@@ -19,18 +24,23 @@ function Notes() {
     const refClose = useRef(null)
 
     useEffect(() => {
-
+        setProgress(30)
         if (localStorage.getItem('token')) {
+            setProgress(90)
             getnotes();
         } else {
+            setProgress(90)
             navigate("/login")
             showAlert("Login First", "primary")
         }
+        setProgress(100)
         // eslint-disable-next-line
     }, [])
 
     const updatenote = (currentnote) => {
+        setProgress(50)
         setnote({ title: currentnote.title, description: currentnote.description, tag: currentnote.tag, id: currentnote._id })
+        setProgress(100)
         ref.current.click()
     }
 
@@ -39,10 +49,14 @@ function Notes() {
     }
 
     const handleClick = (e) => {
+        setProgress(20)
         e.preventDefault();
+        setProgress(40)
         editnote(note.title, note.description, note.tag, note.id);
         refClose.current.click();
+        setProgress(80)
         showAlert("Updated Successfully", "success")
+        setProgress(100)
     }
 
     return (

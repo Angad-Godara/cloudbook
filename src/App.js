@@ -14,6 +14,7 @@ import Signup from './Components/Signup';
 import { useContext } from 'react';
 import alertContext from './Context/Alert/alertContext';
 import LoadingBar from 'react-top-loading-bar';
+import loadingContext from './Context/LoadingBar/loaderContext';
 
 
 function App() {
@@ -21,12 +22,15 @@ function App() {
   const context = useContext(alertContext);
   const { alert } = context
 
+  const loadingcontext = useContext(loadingContext);
+  const { progress, setProgress } = loadingcontext
+
   return (
     <NoteState>
       <BrowserRouter>
         <Navbar />
         <LoadingBar
-          color='#f11946'
+          color='#2adbe8'
           progress={progress}
           onLoaderFinished={() => setProgress(0)}
         />

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import alertContext from '../Context/Alert/alertContext';
 import noteContext from '../Context/Notes/noteContext'
+import loadingContext from '../Context/LoadingBar/loaderContext';
 
 export const Addnote = () => {
 
@@ -10,6 +11,9 @@ export const Addnote = () => {
     const alertcontext = useContext(alertContext);
     const { showAlert } = alertcontext;
 
+    const loadingcontext = useContext(loadingContext);
+    const { setProgress } = loadingcontext
+
     const [note, setnote] = useState({ title: "", description: "", tag: "" })
 
     const handlechange = (e) => {
@@ -17,10 +21,14 @@ export const Addnote = () => {
     }
 
     const handleClick = (e) => {
+        setProgress(20);
         e.preventDefault();
         addnote(note.title, note.description, note.tag);
+        setProgress(70)
         showAlert("Added successfully", "success")
+        setProgress(80)
         setnote({ title: "", description: "", tag: "" })
+        setProgress(100)
     }
 
     return (
