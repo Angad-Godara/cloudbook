@@ -46,6 +46,7 @@ function Signup() {
     return (
         <div>
             <form onSubmit={handleClick}>
+                <h2>Register yourself to use Cloudbook</h2>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">Name</label>
                     <input type="name" onChange={handlechange} className="form-control" id="name" name='name' required />
@@ -63,7 +64,7 @@ function Signup() {
                     <label htmlFor="cpassword" className="form-label">Confirm Password</label>
                     <input type="password" onChange={handlechange} className="form-control" id="cpassword" name='cpassword' required minLength={3} />
                 </div>
-                <button disabled={user.cpassword !== user.password} type="submit" className="btn btn-primary">Submit</button>
+                <button disabled={user.cpassword !== user.password} type="submit" className="btn btn-primary">Register</button>
             </form>
         </div>
     )

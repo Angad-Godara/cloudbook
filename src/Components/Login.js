@@ -43,7 +43,7 @@ function Login() {
 
     return (
         <div className='container my-3'>
-            <h2>Login</h2>
+            <h2>Login to Cloudbook</h2>
             <form className='my-3' onSubmit={handleClick}>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>
@@ -58,7 +58,7 @@ function Login() {
                     <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                     <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">Login</button>
             </form>
         </div>
     )

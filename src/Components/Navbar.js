@@ -1,12 +1,19 @@
 import React, { useContext } from 'react'
 import { Link, useLocation } from "react-router-dom";
-import noteContext from '../Context/Notes/noteContext';
+import alertContext from '../Context/Alert/alertContext';
 
 function Navbar() {
-    const context = useContext(noteContext)
-
-    const { authtoken } = context;
     let location = useLocation();
+
+    const alertcontext = useContext(alertContext)
+    const { showAlert } = alertcontext
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        console.log(localStorage.getItem('token'))
+        showAlert("Logged out succesfully", "success")
+    }
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
@@ -24,8 +31,8 @@ function Navbar() {
                         </li>
                     </ul>
                     <div className="d-flex">
-                        {(authtoken !== null ?
-                            <Link className="btn btn-primary mx-1" to="/login" role="button">Logout</Link>
+                        {(localStorage.getItem('token') ?
+                            <Link onClick={handleLogout} className="btn btn-primary mx-1" to="/login" role="button">Logout</Link>
                             :
                             <>
                                 <Link className="btn btn-primary mx-1" to="/login" role="button">Login</Link>
