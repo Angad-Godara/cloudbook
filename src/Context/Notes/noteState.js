@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import alertContext from "../Alert/alertContext";
 import NoteContext from "./noteContext";
 
 const NoteState = (props) => {
+
+    const alertcontext = useContext(alertContext)
+    const { showAlert } = alertcontext
 
     const host = "http://localhost:5000/api"
 
@@ -47,7 +51,7 @@ const NoteState = (props) => {
             setnotes(notes.concat(newnote))
         }
         else {
-            console.log("unable to add notes")
+            showAlert("unable to add notes", "danger")
         }
         // getnotes();
     }
@@ -101,7 +105,7 @@ const NoteState = (props) => {
     }
 
     return (
-        <NoteContext.Provider value={{ notes, addnote, deletenote, editnote, getnotes }}>
+        <NoteContext.Provider value={{ notes, setnotes, addnote, deletenote, editnote, getnotes, host }}>
             {props.children}
         </NoteContext.Provider>
     )

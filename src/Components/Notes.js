@@ -51,11 +51,11 @@ function Notes() {
                             <form className='my-3'>
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label">Title</label>
-                                    <input type="text" className="form-control" id="title" value={note.title} name='title' onChange={handlechange} />
+                                    <input type="text" className="form-control" id="title" value={note.title} name='title' onChange={handlechange} required minLength={5} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="description" className="form-label">Description</label>
-                                    <input type="text" className="form-control" id="description" value={note.description} name='description' onChange={handlechange} />
+                                    <input type="text" className="form-control" id="description" value={note.description} name='description' onChange={handlechange} required minLength={5} />
                                 </div>
                                 <div className="mb-3">
                                     <label className="form-label" htmlFor="tag">Tag</label>
@@ -65,7 +65,7 @@ function Notes() {
                         </div>
                         <div className="modal-footer">
                             <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary" onClick={handleClick}>Update Note</button>
+                            <button type="button" disabled={note.title.length < 5 || note.description.length < 5} className="btn btn-primary" onClick={handleClick}>Update Note</button>
                         </div>
                     </div>
                 </div>

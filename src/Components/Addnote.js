@@ -24,17 +24,17 @@ export const Addnote = () => {
             <form className='my-3'>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Title</label>
-                    <input type="text" className="form-control" value={note.title} id="title" name='title' onChange={handlechange} />
+                    <input type="text" className="form-control" value={note.title} id="title" name='title' onChange={handlechange} required minLength={5} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="description" className="form-label">Description</label>
-                    <input type="text" className="form-control" value={note.description} id="description" name='description' onChange={handlechange} />
+                    <input type="text" className="form-control" value={note.description} id="description" name='description' onChange={handlechange} required minLength={5} />
                 </div>
                 <div className="mb-3">
                     <label className="form-label" htmlFor="tag">Tag</label>
                     <input type="text" className="form-control" value={note.tag} id="text" name='tag' onChange={handlechange} />
                 </div>
-                <button type="submit" className="btn btn-primary" onClick={handleClick}>Add Note</button>
+                <button disabled={note.title.length < 5 || note.description.length < 5} type="submit" className="btn btn-primary" onClick={handleClick}>Add Note</button>
             </form>
         </div>
     )

@@ -19,18 +19,19 @@ router.post('/createuser', [
 
 ], async (req, res) => {
 
+    let success = false;
     // checking the results of the validators
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({ success, errors: errors.array() });
     }
     try {
 
         // checking if their exists a user with the same email
-        let User = await user.findOne({ email: req.body.email })
+        let User = await user.findOne({ success, email: req.body.email })
 
         if (User) {
-            return res.status(400).json({ error: "Sorry for inconvenience but the email already exists" })
+            return res.status(400).json({ success, error: "Sorry for inconvenience but the email already exists" })
         }
 
         const salt = await bcrypt.genSalt(10);
@@ -48,12 +49,13 @@ router.post('/createuser', [
                 id: user.id
             }
         }
+        success = true;
         const authtoken = jwt.sign(data, JWT_SECRET)
-        res.json({ authtoken });
+        res.json({ success, authtoken });
 
     } catch (err) {
         console.log(err);
-        res.status(500).send("Internal server error")
+        res.status(500).send(success, "Internal server error")
     }
 })
 
@@ -65,9 +67,10 @@ router.post('/login', [
 
 ], async (req, res) => {
 
+    let success = false;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({ success, errors: errors.array() });
     }
 
     try {
@@ -77,13 +80,13 @@ router.post('/login', [
         let User = await user.findOne({ email: email })
 
         if (!User) {
-            return res.status(400).json({ error: "Please enter valid credentials" })
+            return res.status(400).json({ success, error: "Please enter valid credentials" })
         }
 
         const passwordCompare = await bcrypt.compare(password, User.password);
 
         if (!passwordCompare) {
-            return res.status(400).json({ error: "Please enter valid credentials" })
+            return res.status(400).json({ success, error: "Please enter valid credentials" })
         }
 
         const data = {
@@ -91,8 +94,9 @@ router.post('/login', [
                 id: User.id
             }
         }
+        success = true;
         const authtoken = jwt.sign(data, JWT_SECRET)
-        res.json({ authtoken });
+        res.json({ success, authtoken });
 
     } catch (err) {
         console.log(err);
@@ -103,12 +107,13 @@ router.post('/login', [
 // Get logged in user using: POST "/api/auth/getuser"
 router.post('/getuser', fetchuser, async (req, res) => {
     try {
+        let success = false;
         const userId = req.user.id;
         const User = await user.findById(userId).select("-password")
-        res.send(User);
+        res.send(sucess, User);
     } catch (error) {
         console.log(err);
-        res.status(500).send("Internal server error")
+        res.status(500).send(success, "Internal server error")
     }
 })
 

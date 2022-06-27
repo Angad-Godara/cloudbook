@@ -1,7 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Link, useLocation } from "react-router-dom";
+import noteContext from '../Context/Notes/noteContext';
 
 function Navbar() {
+    const context = useContext(noteContext)
+
+    const { authtoken } = context;
     let location = useLocation();
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -19,10 +23,16 @@ function Navbar() {
                             <Link className={`nav-link ${location.pathname === '/about' ? "active" : ""}`} to="/about">About</Link>
                         </li>
                     </ul>
-                    <form className="d-flex" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    <div className="d-flex">
+                        {(authtoken !== null ?
+                            <Link className="btn btn-primary mx-1" to="/login" role="button">Logout</Link>
+                            :
+                            <>
+                                <Link className="btn btn-primary mx-1" to="/login" role="button">Login</Link>
+                                <Link className="btn btn-primary mx-1" to="/signup" role="button">Signup</Link>
+                            </>
+                        )}
+                    </div>
                 </div>
             </div>
         </nav>
