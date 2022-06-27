@@ -33,7 +33,7 @@ export const Addnote = () => {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="description" className="form-label">Description</label>
-                    <input type="text" className="form-control" value={note.description} id="description" name='description' onChange={handlechange} required minLength={5} />
+                    <textarea type="text" className="form-control" value={note.description} id="description" name='description' onChange={handlechange} required minLength={5} />
                 </div>
                 <div className="mb-3">
                     <label className="form-label" htmlFor="tag">Tag</label>

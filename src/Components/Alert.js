@@ -8,7 +8,7 @@ function Alert({ alert }) {
             word = "error";
         }
 
-        if (word == "primary") {
+        if (word === "primary") {
             word = "kindly"
         }
 
