@@ -12,8 +12,8 @@ const NoteState = (props) => {
 
     const [notes, setnotes] = useState(initialNotes)
 
-    // const server = process.env.REACT_APP_SERVER;
-    const server = "http://localhost:5000/"
+    const server = process.env.REACT_APP_SERVER;
+    // const server = "http://localhost:5000/"
     const host = `${server}api`
 
     // Getting all notes
