@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const passcode = require('./local')
 
-const mongoURI = `mongodb+srv://lostinpresent:${passcode}@cluster0.a5ibf.mongodb.net/test`;
+const mongoURI = `mmongodb+srv://lostinpresent:${passcode}@cluster0.a5ibf.mongodb.net/?retryWrites=true&w=majority`;
 
 const connectToMongo = () => {
     mongoose.connect(mongoURI, () => {
