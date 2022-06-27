@@ -7,11 +7,13 @@ const NoteState = (props) => {
     const alertcontext = useContext(alertContext)
     const { showAlert } = alertcontext
 
-    const host = "http://localhost:5000/api"
 
     const initialNotes = []
 
     const [notes, setnotes] = useState(initialNotes)
+
+    const server = process.env.REACT_APP_SERVER;
+    const host = `${server}api`
 
     // Getting all notes
     const getnotes = async () => {

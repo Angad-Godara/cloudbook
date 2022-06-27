@@ -11,7 +11,6 @@ import NoteState from './Context/Notes/noteState';
 import Alert from './Components/Alert';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
-import AlertState from './Context/Alert/alertState';
 import { useContext } from 'react';
 import alertContext from './Context/Alert/alertContext';
 
