@@ -46,7 +46,7 @@ router.post('/createuser', [
 
         const data = {
             user: {
-                id: user.id
+                id: User.id
             }
         }
         success = true;
@@ -59,7 +59,7 @@ router.post('/createuser', [
     }
 })
 
-// Route 2: loggin in a user using: POST "/api/auth/createuser"
+// Route 2: login in a user using: POST "/api/auth/createuser"
 router.post('/login', [
 
     body('email', 'Please enter valid credentials').isEmail(),
