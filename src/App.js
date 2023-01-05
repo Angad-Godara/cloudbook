@@ -38,10 +38,10 @@ function App() {
         <div className='container'>
           <Routes>
             <Route exact path="/cloudbook" element={<Home />} />
-            <Route exact path="/about" element={<About />} />
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/signup" element={<Signup />} />
-            <Route path="/" element={<Home />} />
+            <Route exact path="/cloudbook/about" element={<About />} />
+            <Route exact path="/cloudbook/login" element={<Login />} />
+            <Route exact path="/cloudbook/signup" element={<Signup />} />
+            <Route path="/cloudbook/" element={<Home />} />
           </Routes>
         </div>
       </BrowserRouter>

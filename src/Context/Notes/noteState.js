@@ -4,6 +4,8 @@ import NoteContext from "./noteContext";
 
 const NoteState = (props) => {
 
+    const [loggedIn, setloggedIn] = useState(false)
+
     const alertcontext = useContext(alertContext)
     const { showAlert } = alertcontext
 
@@ -108,7 +110,7 @@ const NoteState = (props) => {
     }
 
     return (
-        <NoteContext.Provider value={{ notes, setnotes, addnote, deletenote, editnote, getnotes, host }}>
+        <NoteContext.Provider value={{ notes, setnotes, addnote, deletenote, editnote, getnotes, host, loggedIn, setloggedIn }}>
             {props.children}
         </NoteContext.Provider>
     )

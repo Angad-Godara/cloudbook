@@ -8,6 +8,8 @@ import loadingContext from '../Context/LoadingBar/loaderContext';
 function Login() {
 
     const context = useContext(noteContext)
+    const userStatus = useContext(noteContext)
+    const { setloggedIn } = userStatus
     const alertcontext = useContext(alertContext)
     const { host } = context;
     const { showAlert } = alertcontext;
@@ -37,7 +39,8 @@ function Login() {
         const json = await response.json();
         if (json.success) {
             localStorage.setItem('token', json.authtoken)
-            history("/")
+            setloggedIn(true)
+            history("/cloudbook")
             showAlert("Logged in Successfully", "success")
         } else {
             if (json.error) {

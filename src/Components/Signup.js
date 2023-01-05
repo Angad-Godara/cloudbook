@@ -12,6 +12,9 @@ function Signup() {
     const { host } = context;
     const { showAlert } = alertcontext;
 
+    const userStatus = useContext(noteContext)
+    const { setloggedIn } = userStatus
+
     const loadingcontext = useContext(loadingContext);
     const { setProgress } = loadingcontext
 
@@ -37,7 +40,8 @@ function Signup() {
         const json = await response.json();
         if (json.success === true) {
             localStorage.setItem('token', json.authtoken)
-            history("/")
+            setloggedIn(true)
+            history("/cloudbook")
             showAlert("Account created Successfully", "success")
         } else {
             if (json.error) {
